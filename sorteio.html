@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteio de Nomes</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 40px; }
+    #winner { font-size: 2em; margin-top: 30px; color: #007BFF; }
+    button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+    ul { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h1>Sorteio de Nomes</h1>
+  <p id="status">Carregando nomes...</p>
+  <ul id="nameList"></ul>
+  <button onclick="drawWinner()">Sortear</button>
+  <div id="winner"></div>
+
+  <script>
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/1_foOTolYHT5GByegXm0-0NpalC8mSMxgN15O7lCBgCQ/export?format=csv&gid=87642040';
+
+    let names = [];
+
+    function parseCSV(data) {
+      const lines = data.trim().split('\n');
+      const headers = lines[0].split(',');
+
+      const nameIndex = headers.findIndex(h => h.trim().toLowerCase() === 'nome completo');
+      if (nameIndex === -1) return [];
+
+      return lines.slice(1).map(row => {
+        const cols = row.split(',');
+        return cols[nameIndex]?.trim();
+      }).filter(Boolean);
+    }
+
+    async function init() {
+      try {
+        const response = await fetch(CSV_URL);
+        const text = await response.text();
+        names = parseCSV(text);
+
+        const nameList = document.getElementById('nameList');
+        nameList.innerHTML = names.map(n => `<li>${n}</li>`).join('');
+
+        document.getElementById('status').innerText = `${names.length} nomes carregados`;
+      } catch (e) {
+        console.error(e);
+        document.getElementById('status').innerText = 'Erro ao carregar nomes.';
+      }
+    }
+
+    function drawWinner() {
+      if (names.length === 0) return alert("Lista vazia!");
+      const winner = names[Math.floor(Math.random() * names.length)];
+      document.getElementById('winner').innerText = `🎉 ${winner} 🎉`;
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
