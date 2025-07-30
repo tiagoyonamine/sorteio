@@ -2,20 +2,21 @@
 
 ## Descrição
 
-Site de sorteio simplificado para a 20ª Festa do Sukiyaki das Lojas Maçônicas de Bertioga. O layout foi otimizado para exibição em telão durante eventos, com foco na experiência visual e facilidade de uso.
+Site de sorteio otimizado para a 20ª Festa do Sukiyaki das Lojas Maçônicas de Bertioga. O layout foi projetado especificamente para exibição em telão durante eventos, com foco na experiência visual e máxima simplicidade.
 
 ## Características
 
-### ✨ **Layout Simplificado**
+### ✨ **Layout Otimizado**
 - Design limpo e minimalista inspirado no estilo Apple
-- Layout responsivo que se adapta a diferentes tamanhos de tela
-- Otimizado para exibição em telão de eventos
-- Sem informações de prêmios/patrocinadores para máxima simplicidade
+- Layout de 3 colunas com elementos perfeitamente alinhados
+- Logo maior e mais visível, posicionado à esquerda do box do ganhador
+- Contador de participantes alinhado à direita do box do ganhador
+- Otimizado para exibição em telão sem necessidade de scroll
 
-### 📊 **Contadores Inteligentes**
-- **Sorteio nº**: Contador automático que incrementa a cada sorteio realizado
-- **Participantes**: Número total de participantes carregados da planilha
-- Atualizados automaticamente em tempo real
+### 📊 **Contador Inteligente**
+- **Participantes**: Número total de participantes carregados da planilha em tempo real
+- Removido o contador de sorteios para máxima simplicidade
+- Atualizado automaticamente conforme os dados da planilha
 
 ### 🎯 **Funcionalidades**
 - Sorteio aleatório com animação de 3 segundos
@@ -26,9 +27,10 @@ Site de sorteio simplificado para a 20ª Festa do Sukiyaki das Lojas Maçônicas
 
 ### 🎨 **Design**
 - Paleta de cores oficial do evento Sukiyaki
-- Logo oficial integrado
+- Logo oficial integrado e aumentado para melhor visibilidade
 - Tipografia moderna e legível
 - Animações suaves e profissionais
+- Layout responsivo que se adapta a diferentes tamanhos de tela
 
 ## Configuração
 
@@ -86,7 +88,21 @@ php -S localhost:8000
 
 - **Clique no botão**: Inicia o sorteio
 - **Barra de espaço**: Atalho para iniciar o sorteio
-- **Múltiplos sorteios**: O contador incrementa automaticamente
+- **Múltiplos sorteios**: Possível sortear quantas vezes necessário
+
+## Layout e Posicionamento
+
+### 📐 **Estrutura Visual**
+- **Coluna Esquerda**: Logo do Sukiyaki (aumentado para 280px)
+- **Coluna Central**: Área do sorteio (título "Ganhador:", box do nome, botão)
+- **Coluna Direita**: Contador de participantes
+- **Alinhamento Vertical**: Todos os elementos alinhados na altura do box do ganhador
+
+### 🎨 **Elementos Visuais**
+- **Logo**: Posicionado à esquerda, tamanho otimizado para telão
+- **Box do Ganhador**: Centro da tela, destaque máximo
+- **Contador**: À direita, informação clara e visível
+- **Cores**: Vermelho (#d32f2f), dourado (#ffa500) e preto
 
 ## Funcionalidades Técnicas
 
@@ -99,6 +115,7 @@ php -S localhost:8000
 - Layout adaptativo para desktop, tablet e mobile
 - Otimizado para telas de telão (1920x1080 e superiores)
 - Fontes e elementos escaláveis
+- Grid responsivo que se adapta automaticamente
 
 ### 🛠️ **Debugging**
 
@@ -108,21 +125,15 @@ Comandos disponíveis no console do navegador:
 // Recarregar participantes da planilha
 reloadParticipants();
 
-// Resetar contadores
-resetCounters();
-
 // Verificar participantes carregados
 console.log(participantes);
-
-// Verificar número de sorteios
-console.log(drawCount);
 ```
 
 ### ⚡ **Performance**
 - Otimizado para mais de 1000 participantes
 - Carregamento assíncrono da planilha
 - Animações GPU-aceleradas
-- Código JavaScript minificado e eficiente
+- Código JavaScript otimizado e eficiente
 
 ## Solução de Problemas
 
@@ -140,6 +151,11 @@ console.log(drawCount);
 - Aguarde o carregamento completo da página
 - Verifique o console do navegador para erros
 
+### 🖥️ **Layout não aparece corretamente**
+- Certifique-se de que o arquivo `sukiyaki-logo.png` está na pasta
+- Verifique se todos os arquivos CSS e JS estão carregando
+- Teste em diferentes resoluções de tela
+
 ## Suporte
 
 Para dúvidas ou problemas:
@@ -149,7 +165,8 @@ Para dúvidas ou problemas:
 
 ## Versão
 
-**Versão**: 2.0 - Layout Simplificado  
+**Versão**: 2.1 - Layout Otimizado  
 **Data**: Julho 2025  
-**Evento**: 20ª Festa do Sukiyaki das Lojas Maçônicas de Bertioga
+**Evento**: 20ª Festa do Sukiyaki das Lojas Maçônicas de Bertioga  
+**Mudanças**: Removido contador de sorteios, logo aumentado e reposicionado, layout de 3 colunas otimizado
 

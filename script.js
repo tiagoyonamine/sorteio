@@ -20,18 +20,15 @@ let participantes = [];
 let isDrawing = false;
 let animationInterval;
 let isLoading = true;
-let drawCount = 0;
 
 // Elementos do DOM
 const drawButton = document.getElementById('drawButton');
 const winnerName = document.getElementById('winnerName');
-const drawCounter = document.getElementById('drawCounter');
 const participantCounter = document.getElementById('participantCounter');
 const statusIndicator = document.getElementById('statusIndicator');
 
-// Função para atualizar os contadores
-function updateCounters() {
-    drawCounter.textContent = drawCount;
+// Função para atualizar o contador de participantes
+function updateParticipantCounter() {
     participantCounter.textContent = participantes.length;
 }
 
@@ -77,7 +74,7 @@ async function loadParticipants() {
         
         // Atualiza a interface
         updateLoadingState(false);
-        updateCounters();
+        updateParticipantCounter();
         
     } catch (error) {
         console.error('Erro ao carregar participantes:', error);
@@ -88,7 +85,7 @@ async function loadParticipants() {
         
         // Atualiza a interface
         updateLoadingState(false, true);
-        updateCounters();
+        updateParticipantCounter();
     }
 }
 
@@ -208,10 +205,6 @@ function stopAnimationAndShowWinner() {
     winnerName.classList.add('winner-announced');
     winnerName.textContent = winner;
     
-    // Incrementa o contador de sorteios
-    drawCount++;
-    updateCounters();
-    
     // Remove a classe de vencedor após a animação
     setTimeout(() => {
         winnerName.classList.remove('winner-announced');
@@ -222,7 +215,7 @@ function stopAnimationAndShowWinner() {
     drawButton.textContent = 'SORTEAR NOVAMENTE';
     isDrawing = false;
     
-    console.log(`Ganhador sorteado: ${winner} (Sorteio #${drawCount})`);
+    console.log(`Ganhador sorteado: ${winner}`);
 }
 
 // Função principal do sorteio
@@ -282,23 +275,15 @@ function reloadParticipants() {
     loadParticipants();
 }
 
-// Função para resetar contadores (útil para debugging)
-function resetCounters() {
-    drawCount = 0;
-    updateCounters();
-    console.log('Contadores resetados');
-}
-
 // Expõe funções para o console (debugging)
 window.reloadParticipants = reloadParticipants;
-window.resetCounters = resetCounters;
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Sistema de sorteio Sukiyaki carregado!');
     
-    // Inicializa os contadores
-    updateCounters();
+    // Inicializa o contador de participantes
+    updateParticipantCounter();
     
     // Mostra estado de carregamento
     updateLoadingState(true);
@@ -312,11 +297,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Adiciona informações de debug no console
     console.log('Comandos disponíveis:');
     console.log('- reloadParticipants(): Recarrega a lista da planilha');
-    console.log('- resetCounters(): Reseta os contadores de sorteio');
     console.log('- Espaço: Iniciar sorteio');
     
     // Expõe variáveis para debugging
     window.participantes = participantes;
-    window.drawCount = drawCount;
 });
 

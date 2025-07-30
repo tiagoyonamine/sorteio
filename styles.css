@@ -20,19 +20,20 @@ body {
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
     padding: 60px 80px;
     position: relative;
+    align-items: center;
 }
 
-/* Logo do Sukiyaki (canto superior esquerdo) */
+/* Logo do Sukiyaki (alinhado à esquerda do box do ganhador) */
 .sukiyaki-logo {
     grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
-    align-self: start;
-    width: 200px;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+    width: 280px;
     height: auto;
 }
 
@@ -42,45 +43,39 @@ body {
     object-fit: contain;
 }
 
-/* Contadores (canto superior direito) */
-.counters {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-    align-self: start;
+/* Contador de participantes (alinhado à direita do box do ganhador) */
+.participant-counter {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    text-align: right;
-}
-
-.counter-item {
-    display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 12px;
+    text-align: center;
 }
 
 .counter-label {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 500;
     color: #ffa500;
     letter-spacing: -0.01em;
 }
 
 .counter-value {
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.02em;
-    min-width: 60px;
-    text-align: right;
+    min-width: 80px;
+    text-align: center;
 }
 
 /* Seção central do ganhador */
 .winner-section {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    grid-column: 2;
+    grid-row: 1 / -1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -260,17 +255,21 @@ body {
 }
 
 /* Responsividade para telas menores */
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
     .container {
         padding: 40px 60px;
     }
     
+    .sukiyaki-logo {
+        width: 240px;
+    }
+    
     .counter-label {
-        font-size: 24px;
+        font-size: 28px;
     }
     
     .counter-value {
-        font-size: 28px;
+        font-size: 42px;
     }
     
     .winner-label {
@@ -285,55 +284,91 @@ body {
         font-size: 22px;
         padding: 18px 40px;
     }
+}
+
+@media (max-width: 1400px) {
+    .container {
+        grid-template-columns: 1fr 3fr 1fr;
+        padding: 40px 50px;
+    }
     
     .sukiyaki-logo {
-        width: 160px;
+        width: 200px;
+    }
+    
+    .counter-label {
+        font-size: 24px;
+    }
+    
+    .counter-value {
+        font-size: 36px;
+    }
+    
+    .winner-label {
+        font-size: 38px;
+    }
+    
+    .winner-name {
+        font-size: 30px;
+    }
+    
+    .draw-button {
+        font-size: 20px;
+        padding: 16px 36px;
     }
 }
 
 @media (max-width: 1200px) {
     .container {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto auto auto auto;
         padding: 30px 40px;
-        gap: 20px;
+        gap: 30px;
     }
     
     .sukiyaki-logo {
         grid-column: 1;
         grid-row: 1;
         justify-self: center;
-        width: 140px;
+        width: 180px;
     }
     
-    .counters {
+    .participant-counter {
         grid-column: 1;
         grid-row: 2;
         justify-self: center;
-        text-align: center;
         flex-direction: row;
-        gap: 40px;
-    }
-    
-    .counter-item {
-        justify-content: center;
+        gap: 20px;
     }
     
     .winner-section {
         grid-column: 1;
-        grid-row: 3;
+        grid-row: 3 / -1;
         padding: 0 20px;
+    }
+    
+    .counter-label {
+        font-size: 22px;
+    }
+    
+    .counter-value {
+        font-size: 32px;
     }
 }
 
 @media (max-width: 768px) {
     .container {
         padding: 20px 30px;
+        gap: 20px;
     }
     
-    .counters {
+    .sukiyaki-logo {
+        width: 140px;
+    }
+    
+    .participant-counter {
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
     }
     
     .counter-label {
@@ -341,15 +376,15 @@ body {
     }
     
     .counter-value {
-        font-size: 24px;
+        font-size: 28px;
     }
     
     .winner-label {
-        font-size: 36px;
+        font-size: 32px;
     }
     
     .winner-name {
-        font-size: 28px;
+        font-size: 26px;
     }
     
     .winner-display {
@@ -358,13 +393,9 @@ body {
     }
     
     .draw-button {
-        font-size: 20px;
-        padding: 16px 32px;
-        min-width: 240px;
-    }
-    
-    .sukiyaki-logo {
-        width: 120px;
+        font-size: 18px;
+        padding: 14px 28px;
+        min-width: 220px;
     }
 }
 
